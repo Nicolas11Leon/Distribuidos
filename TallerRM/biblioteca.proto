@@ -1,0 +1,88 @@
+// biblioteca.proto
+//
+// Contrato del servicio gRPC para el sistema de gestión de biblioteca.
+// Define los 4 métodos remotos disponibles y los mensajes (estructuras
+// de datos) que viajan entre el cliente y el servidor a través de la red.
+//
+// Este archivo es la fuente de verdad del sistema: tanto el servidor como
+// el cliente son generados a partir de él usando el compilador protoc.
+//
+// Autores: Juan Diego Ariza, Nicolas Leon
+// Curso: Introducción a Sistemas Distribuidos
+// Universidad: Pontificia Universidad Javeriana
+// Fecha: Febrero 2026
+
+// Versión del lenguaje Protocol Buffers a usar
+syntax = "proto3";
+
+// Namespace interno para evitar colisiones de nombres en el código generado
+package biblioteca;
+
+// ============================================================
+// SERVICIO REMOTO
+// Define los 4 procedimientos remotos (RPC) que el servidor
+// expone y el cliente puede invocar a través de la red.
+// ============================================================
+
+service GestionBiblioteca {
+
+  // Préstamo por ISBN: dado el ISBN de un libro, verifica disponibilidad
+  // y registra el préstamo. Retorna aprobación y fecha de devolución.
+  rpc PrestamoPorIsbn (PeticionIsbn) returns (RespuestaPrestamo);
+
+  // Préstamo por Título: igual que PrestamoPorIsbn pero la búsqueda
+  // se realiza por el título exacto del libro.
+  rpc PrestamoPorTitulo (PeticionTitulo) returns (RespuestaPrestamo);
+
+  // Consulta: dado el ISBN, retorna si el libro existe en la biblioteca
+  // y cuántos ejemplares están disponibles actualmente.
+  rpc Consulta (PeticionIsbn) returns (RespuestaConsulta);
+
+  // Devolución: dado el ISBN, registra la devolución del libro
+  // e incrementa los ejemplares disponibles en el inventario.
+  rpc Devolucion (PeticionIsbn) returns (RespuestaDevolucion);
+}
+
+// ============================================================
+// MENSAJES DE ENTRADA
+// Estructuras que el cliente envía al servidor.
+// Los números (= 1, = 2...) son identificadores de campo
+// usados por Protocol Buffers para serializar los datos en binario.
+// ============================================================
+
+// Mensaje de petición que contiene un ISBN para identificar un libro
+message PeticionIsbn {
+  string isbn = 1;
+}
+
+// Mensaje de petición que contiene el título de un libro
+message PeticionTitulo {
+  string titulo = 1;
+}
+
+// ============================================================
+// MENSAJES DE RESPUESTA
+// Estructuras que el servidor retorna al cliente.
+// ============================================================
+
+// Respuesta a una solicitud de préstamo:
+// - aprobado: true si el préstamo fue concedido, false si fue rechazado
+// - fecha_devolucion: fecha límite en formato dd/mm/aaaa (vacío si rechazado)
+message RespuestaPrestamo {
+  bool aprobado = 1;
+  string fecha_devolucion = 2;
+}
+
+// Respuesta a una consulta de disponibilidad:
+// - existe: true si el libro fue encontrado en el inventario
+// - disponibles: número de ejemplares disponibles para préstamo
+message RespuestaConsulta {
+  bool existe = 1;
+  int32 disponibles = 2;
+}
+
+// Respuesta a una solicitud de devolución:
+// - exito: true si la devolución fue registrada correctamente
+message RespuestaDevolucion {
+  bool exito = 1;
+}

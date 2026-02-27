@@ -1,0 +1,10 @@
+9786071511471,Sistemas Operativos,5,0
+9788448197503,Estructuras de Datos,3,1
+9786073236973,Sistemas Distribuidos,4,0
+1111111111111,El Hobbit,2,2
+9780132350884,Clean Code,3,0
+9780201633610,Design Patterns,2,0
+9780137081073,The Pragmatic Programmer,4,1
+9788441539327,Calculo Diferencial e Integral,6,2
+9786071509949,Redes de Computadoras,3,0
+9780262033848,Introduction to Algorithms,5,1
