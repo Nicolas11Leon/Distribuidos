@@ -1,0 +1,36 @@
+{
+  "ciudad": {
+    "rows": 5,
+    "cols": 6,
+    "filas": ["A", "B", "C", "D", "E"]
+  },
+  "sensores": {
+    "intervalo_segundos": 10,
+    "tipos": ["espira", "camara", "gps"]
+  },
+  "semaforos": {
+    "tiempo_verde_normal": 15,
+    "tiempo_rojo_normal": 15,
+    "tiempo_verde_congestion": 30,
+    "tiempo_rojo_congestion": 10,
+    "tiempo_verde_priorizacion": 45
+  },
+  "red": {
+    "ip_pc1": "10.43.99.161",
+    "ip_pc2": "10.43.100.24",
+    "ip_pc3": "10.43.98.223",
+    "puerto_broker_pub": 5555,
+    "puerto_broker_sub": 5556,
+    "puerto_analitica_rep": 5570,
+    "puerto_ctrl_semaforos": 5565,
+    "puerto_semaforos_pull": 5560,
+    "puerto_bd_principal": 5575,
+    "puerto_bd_replica": 5576,
+    "puerto_healthcheck": 5580
+  },
+  "healthcheck": {
+    "intervalo_heartbeat": 5,
+    "timeout_segundos": 15,
+    "intervalo_reconexion": 30
+  }
+}
