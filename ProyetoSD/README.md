@@ -142,42 +142,6 @@ El sistema maneja la caída del PC3 de forma automática:
 3. **Continuidad:** El sistema sigue procesando eventos y controlando semáforos.
 4. **Recuperación:** Al volver PC3, se realiza sincronización delta con los eventos pendientes.
 
----
-
-## Estructura del repositorio
-
-```
-trafico_urbano/
-│
-├── README.md
-├── requirements.txt
-├── .gitignore
-│
-├── pc1/
-│   ├── broker_zmq.py
-│   ├── sensor_espira.py
-│   ├── sensor_camara.py
-│   ├── sensor_gps.py
-│   └── semaforo.py
-│
-├── pc2/
-│   ├── servicio_analitica.py
-│   ├── control_semaforos.py
-│   ├── bd_replica.py
-│   └── health_check.py
-│
-├── pc3/
-│   ├── bd_principal.py
-│   └── monitoreo_consulta.py
-│
-├── config/
-│   └── config.py
-│
-└── diagramas/
-    ├── despliegue.puml
-    ├── componentes.puml
-    ├── clases.puml
-    └── secuencia.puml
 ```
 
 ---
